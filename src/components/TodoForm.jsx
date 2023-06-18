@@ -1,9 +1,16 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addNewTodo } from "../redux/actions";
 
 function TodoForm() {
   const [text, setText] = useState("");
 
-  const onFormSubmit = () => {};
+  const dispatch = useDispatch();
+
+  const onFormSubmit = (e) => {
+    e.preventDefault();
+    dispatch(addNewTodo(text));
+  };
 
   const onInputChange = (e) => {
     console.log(e.target.value);
@@ -11,7 +18,7 @@ function TodoForm() {
   };
 
   return (
-    <divn className="form--wrapper">
+    <div className="form--wrapper">
       <form className="form" onSubmit={onFormSubmit}>
         <input
           placeholder="Enter new ToDo..."
@@ -19,7 +26,7 @@ function TodoForm() {
           onChange={onInputChange}
         />
       </form>
-    </divn>
+    </div>
   );
 }
 
